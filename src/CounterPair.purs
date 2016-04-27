@@ -34,8 +34,8 @@ update (Bottom a) s
   = s { bottomCount = Counter.update a s.bottomCount } 
 
 update Reset s 
-  = s { topCount    = Counter.reset s.topCount,
-        bottomCount = Counter.reset s.bottomCount }
+  = s { topCount    = Counter.initialState,
+        bottomCount = Counter.initialState }
 
 view :: State -> Html Action
 view state =

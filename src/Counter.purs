@@ -18,7 +18,7 @@ initialState = 0
 -- Action to reset the Counter without revealing its
 -- representation
 reset :: State -> State
-reset _ = initialState 
+reset = const initialState 
 
 -- Action "reducer" (for those coming from Redux)
 update :: Action -> State -> State
@@ -27,7 +27,7 @@ update Decrement count = count - 1
 
 view :: State -> Html Action
 view count =
-  div [] -- no action creators on div 
+  span [] -- no action creators on div 
     [
       button [onClick (const Increment)] [text "Increment"],
       span [] [text (show count)],
