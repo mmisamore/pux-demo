@@ -4,16 +4,18 @@ import Prelude (bind,Unit)
 import Control.Monad.Eff (Eff)
 import Control.Monad.Eff.Exception (EXCEPTION)
 import Signal.Channel (CHANNEL)
+import Network.HTTP.Affjax (AJAX)
 import Pux (start,fromSimple,renderToDOM)
 -- import CounterPair
-import CounterList
+-- import CounterList
+import Fetch
 
-main :: forall r. Eff ( channel :: CHANNEL, err :: EXCEPTION | r) Unit
+main :: Eff ( ajax :: AJAX, channel :: CHANNEL, err :: EXCEPTION) Unit
 main = do
   app <- start {
-      initialState: CounterList.initialState,
-      update:       fromSimple CounterList.update,
-      view:         CounterList.view,
+      initialState: Fetch.initialState,
+      update:       Fetch.update,
+      view:         Fetch.view,
       inputs:       []
     }
 
